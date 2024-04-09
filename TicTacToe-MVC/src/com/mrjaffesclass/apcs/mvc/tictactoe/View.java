@@ -94,28 +94,28 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jButton1.setText("00");
+        jButton1.setName("00"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClick(evt);
             }
         });
 
-        jButton2.setText("10");
+        jButton2.setName("10"); // NOI18N
 
-        jButton3.setText("20");
+        jButton3.setName("20"); // NOI18N
 
-        jButton4.setText("01");
+        jButton4.setName("01"); // NOI18N
 
-        jButton5.setText("11");
+        jButton5.setName("11"); // NOI18N
 
-        jButton6.setText("21");
+        jButton6.setName("21"); // NOI18N
 
-        jButton7.setText("02");
+        jButton7.setName("02"); // NOI18N
 
-        jButton8.setText("12");
+        jButton8.setName("12"); // NOI18N
 
-        jButton9.setText("22");
+        jButton9.setName("22"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
