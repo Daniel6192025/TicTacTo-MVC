@@ -45,6 +45,14 @@ public class Model implements MessageHandler {
     this.gameOver = false;
   }
   
+  private boolean isWinner() {
+      for(int row=0; row<this.board.length; row++) {
+      for (int col=0; col<this.board[0].length; col++) {
+        this.board[row][col] = "";
+      }
+    }
+  }
+  
   @Override
   public void messageHandler(String messageName, Object messagePayload) {
     // Display the message to the console for debugging
