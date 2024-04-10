@@ -134,6 +134,9 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="21" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
@@ -147,15 +150,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="name" type="java.lang.String" value="22" noResource="true"/>
-<<<<<<< HEAD
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton10">
       <Properties>
         <Property name="text" type="java.lang.String" value="New Game"/>
-=======
->>>>>>> 158d3db53859e565ae9717e1faa4885e31cfb207
       </Properties>
     </Component>
   </SubComponents>

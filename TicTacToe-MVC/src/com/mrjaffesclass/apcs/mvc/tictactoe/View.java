@@ -111,17 +111,20 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jButton5.setName("11"); // NOI18N
 
         jButton6.setName("21"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setName("02"); // NOI18N
 
         jButton8.setName("12"); // NOI18N
 
+        jButton9.setToolTipText("");
         jButton9.setName("22"); // NOI18N
-<<<<<<< HEAD
 
         jButton10.setText("New Game");
-=======
->>>>>>> 158d3db53859e565ae9717e1faa4885e31cfb207
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +193,10 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         JButton button = (JButton)evt.getSource();
         this.mvcMessaging.notify("playerMove", button.getName());
     }//GEN-LAST:event_onClick
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
   /**
    * @param args the command line arguments
