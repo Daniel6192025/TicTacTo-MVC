@@ -32,10 +32,12 @@ public class Model implements MessageHandler {
      * Initialize the model here and subscribe to any required messages
      */
     public void init() {
-        this.newGame();
         this.mvcMessaging.subscribe("playerMove", this);
         this.mvcMessaging.subscribe("newGame", this);
+        
         this.board = new String[3][3];
+        this.newGame();
+ 
     }
 
     private void newGame() {

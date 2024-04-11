@@ -33,6 +33,18 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     this.mvcMessaging.subscribe("boardChange", this);
     this.mvcMessaging.subscribe("gameOver", this);
     this.mvcMessaging.subscribe("isWinner", this);
+    
+    /**jButton1.setName("00");
+    jButton2.setName("10");
+    jButton3.setName("20");
+    jButton4.setName("01");
+    jButton5.setName("11");
+    jButton6.setName("21");
+    jButton7.setName("02");
+    jButton8.setName("12");
+    jButton9.setName("22"); **/
+    
+    
 
   }
   
@@ -104,20 +116,60 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         });
 
         jButton2.setName("10"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton3.setName("20"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton4.setName("01"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton5.setName("11"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton6.setName("21"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton7.setName("02"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton8.setName("12"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton9.setName("22"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton10.setText("New Game");
         jButton10.setName("newGame"); // NOI18N
@@ -187,6 +239,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private void onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick
         // TODO add your handling code here:
         JButton button = (JButton)evt.getSource();
+        System.out.println(button.getName());
         this.mvcMessaging.notify("playerMove", button.getName());
         this.mvcMessaging.notify("newGame", button.getName());
     }//GEN-LAST:event_onClick
