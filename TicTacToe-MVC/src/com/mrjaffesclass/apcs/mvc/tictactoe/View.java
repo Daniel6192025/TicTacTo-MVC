@@ -32,18 +32,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     // Subscribe to messages here
     this.mvcMessaging.subscribe("boardChange", this);
     this.mvcMessaging.subscribe("gameOver", this);
-    this.mvcMessaging.subscribe("isWinner", this);
-    
-    /**jButton1.setName("00");
-    jButton2.setName("10");
-    jButton3.setName("20");
-    jButton4.setName("01");
-    jButton5.setName("11");
-    jButton6.setName("21");
-    jButton7.setName("02");
-    jButton8.setName("12");
-    jButton9.setName("22"); **/
-    
+    this.mvcMessaging.subscribe("gameWon", this);
     
 
   }
@@ -69,6 +58,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       jButton7.setText(board[2][0]);
       jButton8.setText(board[2][1]);
       jButton9.setText(board[2][2]);
+    } else if (messageName.equals("gameWon")) {
+        String winner = (String) messagePayload;
+        jLabel1.setText( winner + " WINSSS!!!");
     }
   
   }
@@ -116,60 +108,20 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         });
 
         jButton2.setName("10"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton3.setName("20"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton4.setName("01"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton5.setName("11"); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton6.setName("21"); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton7.setName("02"); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton8.setName("12"); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton9.setName("22"); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClick(evt);
-            }
-        });
 
         jButton10.setText("New Game");
         jButton10.setName("newGame"); // NOI18N
@@ -196,8 +148,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))

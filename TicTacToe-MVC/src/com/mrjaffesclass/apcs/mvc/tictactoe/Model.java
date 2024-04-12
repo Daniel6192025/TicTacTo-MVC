@@ -50,25 +50,32 @@ public class Model implements MessageHandler {
         this.gameOver = false;
     }
 
-    private boolean isWinner() {
+    private String isWinner(String player) {
+        String winner = "";
         for (int row = 0; row < this.board.length; row++) {
             for (int col = 0; col < this.board[0].length; col++) {
                 if (this.board[0][col].equals(this.board[1][col]) && this.board[0][col].equals(this.board[2][col]) && !this.board[0][col].equals("")) {
-                    return true;
+                    winner = player;
+                    break;
                 }
                 if (this.board[row][0].equals(this.board[row][1]) && this.board[row][0].equals(this.board[row][2]) && !this.board[row][0].equals("")) {
-                    return true;
+                    winner = player;
+                    break;
                 }
                 if (this.board[0][0].equals(this.board[1][1]) && this.board[0][0].equals(this.board[2][2])) {
-                    return true;
+                    winner = player;
+                    break;
                 }
                 if (this.board[0][2].equals(this.board[1][1]) && this.board[0][2].equals(this.board[2][0])) {
-                    return true;
+                    winner = player;
+                    break;
+                }
+                if (!winner.equals("")) {
+                    break;
                 }
             }
-            this.gameOver = true;
         }
-        return false;
+        return winner;
     }
 
     @Override
@@ -87,19 +94,23 @@ public class Model implements MessageHandler {
             Integer row = new Integer(position.substring(0, 1));
             Integer col = new Integer(position.substring(1, 2));
             // If square is blank...
-            if (this.board[row][col].equals("")) {
+            if (this.board[row][col].equals("") && !gameOver) {
                 // ... then set X or O depending on whose move it is
                 if (this.whoseMove) {
                     this.board[row][col] = "X";
                 } else {
                     this.board[row][col] = "O";
                 }
+                
+                String player = (this.whoseMove) ? "X" : "O";
+                String winner = isWinner(player);
+                    if(!winner.equals("")) {
+                        this.mvcMessaging.notify("gameWon", player);
+                        this.gameOver = true;
+                    }
                 // Send the boardChange message along with the new board 
                 this.mvcMessaging.notify("boardChange", this.board);
             }
-        } else if (messageName.equals("isWinner")) {
-            this.isWinner();
-            this.mvcMessaging.notify("boardChange", this.board);
 
             // newGame message handler
         } else if (messageName.equals("newGame")) {
