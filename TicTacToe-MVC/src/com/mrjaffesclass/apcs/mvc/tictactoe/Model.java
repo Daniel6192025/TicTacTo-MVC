@@ -49,6 +49,17 @@ public class Model implements MessageHandler {
         this.whoseMove = false;
         this.gameOver = false;
     }
+    
+    private boolean draw() {
+        for (int row = 0; row < this.board.length; row++) {
+            for (int col = 0; col < this.board[0].length; col++) {
+                if (this.board[row][col].equals("")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     private String isWinner(String player) {
         String winner = "";
@@ -56,19 +67,19 @@ public class Model implements MessageHandler {
             for (int col = 0; col < this.board[0].length; col++) {
                 if (this.board[0][col].equals(this.board[1][col]) && this.board[0][col].equals(this.board[2][col]) && !this.board[0][col].equals("")) {
                     winner = player;
-                    break;
+                    return board[0][col];
                 }
                 if (this.board[row][0].equals(this.board[row][1]) && this.board[row][0].equals(this.board[row][2]) && !this.board[row][0].equals("")) {
                     winner = player;
-                    break;
+                    return board[row][0];
                 }
                 if (this.board[0][0].equals(this.board[1][1]) && this.board[0][0].equals(this.board[2][2])) {
                     winner = player;
-                    break;
+                    return board[0][0];
                 }
                 if (this.board[0][2].equals(this.board[1][1]) && this.board[0][2].equals(this.board[2][0])) {
                     winner = player;
-                    break;
+                    return board[0][2];
                 }
                 if (!winner.equals("")) {
                     break;
@@ -107,9 +118,16 @@ public class Model implements MessageHandler {
                     if(!winner.equals("")) {
                         this.mvcMessaging.notify("gameWon", player);
                         this.gameOver = true;
+                    } else {
+                        if (draw()) {
+                            this.mvcMessaging.notify("hasTied", "");
+                            this.gameOver = true;
+                        }
                     }
                 // Send the boardChange message along with the new board 
                 this.mvcMessaging.notify("boardChange", this.board);
+                this.whoseMove = !this.whoseMove;
+                
             }
 
             // newGame message handler

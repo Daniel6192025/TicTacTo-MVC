@@ -33,6 +33,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     this.mvcMessaging.subscribe("boardChange", this);
     this.mvcMessaging.subscribe("gameOver", this);
     this.mvcMessaging.subscribe("gameWon", this);
+    this.mvcMessaging.subscribe("hasTied", this);
     
 
   }
@@ -61,6 +62,8 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     } else if (messageName.equals("gameWon")) {
         String winner = (String) messagePayload;
         jLabel1.setText( winner + " WINSSS!!!");
+    } else if (messageName.equals("hasTied")) {
+        jLabel1.setText("TIEEE!!!!!");
     }
   
   }
@@ -98,7 +101,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("TicTacToe!!!");
 
         jButton1.setName("00"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,24 +110,69 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
-        jButton2.setName("10"); // NOI18N
+        jButton2.setName("01"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
-        jButton3.setName("20"); // NOI18N
+        jButton3.setName("02"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
-        jButton4.setName("01"); // NOI18N
+        jButton4.setName("10"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton5.setName("11"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
-        jButton6.setName("21"); // NOI18N
+        jButton6.setName("12"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
-        jButton7.setName("02"); // NOI18N
+        jButton7.setName("20"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
-        jButton8.setName("12"); // NOI18N
+        jButton8.setName("21"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton9.setName("22"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton10.setText("New Game");
         jButton10.setName("newGame"); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,10 +227,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -194,8 +243,14 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         JButton button = (JButton)evt.getSource();
         System.out.println(button.getName());
         this.mvcMessaging.notify("playerMove", button.getName());
-        this.mvcMessaging.notify("newGame", button.getName());
     }//GEN-LAST:event_onClick
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        JButton button = (JButton)evt.getSource();
+        this.mvcMessaging.notify("newGame", button.getName());
+        jLabel1.setText("TicTacToe!!!");
+    }//GEN-LAST:event_jButton10ActionPerformed
 
   /**
    * @param args the command line arguments
