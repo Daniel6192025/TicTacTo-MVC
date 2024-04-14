@@ -34,6 +34,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     this.mvcMessaging.subscribe("gameOver", this);
     this.mvcMessaging.subscribe("gameWon", this);
     this.mvcMessaging.subscribe("hasTied", this);
+    this.mvcMessaging.subscribe("playerChange", this);
     
 
   }
@@ -64,6 +65,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jLabel1.setText( winner + " WINSSS!!!");
     } else if (messageName.equals("hasTied")) {
         jLabel1.setText("TIEEE!!!!!");
+    } else if (messageName.equals("playerChange")) {
+        String playerTurn = (String) messagePayload;
+        jLabel2.setText(playerTurn + "'s turn");
     }
   
   }
@@ -97,6 +101,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +179,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Player Turn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,7 +213,9 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(jButton10)
                         .addGap(18, 18, 18))))
         );
@@ -213,9 +223,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jButton10))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,6 +262,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         JButton button = (JButton)evt.getSource();
         this.mvcMessaging.notify("newGame", button.getName());
         jLabel1.setText("TicTacToe!!!");
+        jLabel2.setText("Player Turn");
     }//GEN-LAST:event_jButton10ActionPerformed
 
   /**
@@ -268,5 +281,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

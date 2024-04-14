@@ -54,11 +54,11 @@ public class Model implements MessageHandler {
         for (int row = 0; row < this.board.length; row++) {
             for (int col = 0; col < this.board[0].length; col++) {
                 if (this.board[row][col].equals("")) {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private String isWinner(String player) {
@@ -125,8 +125,9 @@ public class Model implements MessageHandler {
                         }
                     }
                 // Send the boardChange message along with the new board 
-                this.mvcMessaging.notify("boardChange", this.board);
                 this.whoseMove = !this.whoseMove;
+                this.mvcMessaging.notify("playerChange", (this.whoseMove) ? "X" : "O");
+                this.mvcMessaging.notify("boardChange", this.board);
                 
             }
 
